@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Coordenadas</title>
+</head>
+<body>
+
+    <h1>Minhas Coordenadas</h1>
+    <form action="" id="form">
+        <input type="text" id="latitude">
+        <input type="text" id="longitude">
+    </form>
+    <br>
+    <button id="user-location">Minha Loc</button>
+
+    <script>
+        
+        if('geolocation' in navigator){
+            navigator.geolocation.getCurrentPosition(function(position){
+                console.log(position);
+                open_popup(position.coords.latitude, position.coords.longitude)
+            }, function(error){
+                console.log(error);
+            })
+
+        }else{
+            alert('ops, não foi pssivel pegar a localização');
+        }
+
+        function open_popup(latitude, longitude){
+            document.getElementById('latitude').value = latitude;
+            document.getElementById('longitude').value = longitude;
+        }
+        
+
+        document.getElementById("user-location").addEventListener('click', function(){
+            if('geolocation' in navigator){
+            navigator.geolocation.getCurrentPosition(function(position){
+                console.log(position);
+                open_popup(position.coords.latitude, position.coords.longitude)
+            }, function(error){
+                console.log(error);
+            })
+
+            }else{
+                alert('ops, não foi pssivel pegar a localização');
+            }
+        });
+        
+    </script>
+</body>
+</html>
